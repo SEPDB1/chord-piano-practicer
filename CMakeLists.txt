@@ -27,6 +27,7 @@ FetchContent_MakeAvailable(
 add_executable(${PROJECT_NAME} 
     src/main.cpp
     src/Renderer.cpp
+    src/Utils.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE include)
