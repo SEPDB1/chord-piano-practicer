@@ -1,9 +1,11 @@
 #pragma once
 #include "Singleton.h"
 #include <cstdint>
-#include <SDL3/SDL_video.h>
-#include <SDL3/SDL_render.h>
+#include "Utils.h"
 
+class SDL_Window;
+class SDL_Renderer;
+struct SDL_FRect;
 /*
  A simple wrapper around SDL_Window
 */
@@ -18,7 +20,16 @@ public:
 	Renderer& operator=(Renderer&& other) = delete;
 
 	void Init();
+
+	friend class Game;
+	void ClearRenderer() const;
+	friend class Game;
 	void Render() const;
+
+	void SetDrawColor(Utils::Color4ub c);
+	void SetBackgroundColor(Utils::Color4ub c);
+	void DrawRect(const SDL_FRect* rect) const;
+	void FillRect(const SDL_FRect* rect) const;
 
 	static uint32_t GetWidth();
 	static uint32_t GetHeight();
@@ -30,4 +41,5 @@ private:
 
 	SDL_Window* m_pWindow{};
 	SDL_Renderer* m_pRenderer{};
+	Utils::Color4ub m_BackgroundColor{ 55, 55, 55 };
 };
