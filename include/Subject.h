@@ -1,5 +1,6 @@
 #pragma once
 #include "IObserver.h"
+#include <cstdint>
 
 class Subject
 {
@@ -9,8 +10,14 @@ public:
 		m_pObserver = pObserver;
 	}
 
+	void RemoveObserver()
+	{
+		m_pObserver = nullptr;
+	}
+
 protected:
-	virtual ~Subject() = default;
+	Subject() = default;
+	virtual ~Subject() noexcept = default;
 
 	void Notify(uint8_t eventId)
 	{
