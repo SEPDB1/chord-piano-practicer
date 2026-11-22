@@ -102,25 +102,3 @@ void KeyboardView::CreateKeys()
 		m_Keys.emplace_back(keyModels[i], bounds, isWhite, std::move(hitboxes));
 	}
 }
-
-uint8_t KeyboardView::GetNrWhiteKeys() const
-{
-	uint8_t count{ 0 };
-	for (const KeyView& key : m_Keys)
-	{
-		if (key.IsWhite())
-			++count;
-	}
-	return count;
-}
-
-uint8_t KeyboardView::GetNrBlackKeys() const
-{
-	uint8_t count{ 0 };
-	for (const KeyView& key : m_Keys)
-	{
-		if (!key.IsWhite())
-			++count;
-	}
-	return count;
-}

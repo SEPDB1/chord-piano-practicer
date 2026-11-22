@@ -29,6 +29,4 @@ private:
 	constexpr static float m_HeightBlackKey{ 2.f * m_HeightWhiteKey / 3.f };
 
 	void CreateKeys();
-	uint8_t GetNrWhiteKeys() const;
-	uint8_t GetNrBlackKeys() const;
 };
