@@ -1,5 +1,7 @@
 #pragma once
 #include <cstdint>
+#include "Utils.h"
+
 namespace Note
 {
 	using Midi = uint8_t;
@@ -21,15 +23,31 @@ namespace Note
 		DoubleSharp = 2
 	};
 
-	inline static constexpr Note::Midi m_Min{ 21 };
-	inline static constexpr Note::Midi m_Max{ 108 };
+	inline constexpr static Note::Midi min{ 21 };
+	inline constexpr static Note::Midi max{ 108 };
+
+	inline constexpr static Utils::Color4ub keyColors[12]
+	{
+		{  0, 128, 255, 255}, // A     Blue
+		{  0,   0, 255, 255}, // A#/Bb Indigo
+		{128,   0, 255, 255}, // B     Violet
+		{255,   0,   0, 255}, // C     Red
+		{255,  64,   0, 255}, // C#/Db Red-Orange
+		{255, 128,   0, 255}, // D     Orange
+		{255, 191,   0, 255}, // D#/Eb Yellow-Orange
+		{255, 255,   0, 255}, // E     Yellow
+		{128, 255,   0, 255}, // F     Yellow-Green
+		{  0, 255,   0, 255}, // F#/Gb Green
+		{  0, 255, 128, 255}, // G     Green-Cyan
+		{  0, 255, 255, 255}  // G#/Ab Cyan
+	};
 
 	/*
 	 Corresponds the MIDI value to a piano key?
 	*/
 	inline constexpr bool IsInRange(Midi value)
 	{
-		return m_Min < value && value < m_Max;
+		return min < value && value < max;
 	}
 
 	/*
@@ -37,7 +55,7 @@ namespace Note
 	*/
 	inline constexpr Midi Normalise(Midi value)
 	{
-		return (value - m_Min) % 12;
+		return (value - min) % 12;
 	}
 
 	/*
@@ -52,5 +70,10 @@ namespace Note
 		default:
 			return true;
 		}
+	}
+
+	inline constexpr Utils::Color4ub MidiToColor(Midi value)
+	{
+		return keyColors[Normalise(value)];
 	}
 };
