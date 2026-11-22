@@ -1,5 +1,7 @@
 #pragma once
 #include <cstdint>
+#include "Utils.h"
+
 namespace Note
 {
 	using Midi = uint8_t;
@@ -21,8 +23,24 @@ namespace Note
 		DoubleSharp = 2
 	};
 
-	inline static constexpr Note::Midi m_Min{ 21 };
-	inline static constexpr Note::Midi m_Max{ 108 };
+	inline constexpr static Note::Midi m_Min{ 21 };
+	inline constexpr static Note::Midi m_Max{ 108 };
+
+	inline constexpr static Utils::Color4ub keyColors[12] =
+	{
+		{  0, 128, 255}, // A     Blue
+		{  0,   0, 255}, // A#/Bb Indigo
+		{128,   0, 255}, // B     Violet
+		{255,   0,   0}, // C     Red
+		{255,  64,   0}, // C#/Db Red-Orange
+		{255, 128,   0}, // D     Orange
+		{255, 191,   0}, // D#/Eb Yellow-Orange
+		{255, 255,   0}, // E     Yellow
+		{128, 255,   0}, // F     Yellow-Green
+		{  0, 255,   0}, // F#/Gb Green
+		{  0, 255, 128}, // G     Green-Cyan
+		{  0, 255, 255} // G#/Ab Cyan
+	};
 
 	/*
 	 Corresponds the MIDI value to a piano key?
@@ -33,7 +51,7 @@ namespace Note
 	}
 
 	/*
-	 Shifts the MIDI value to the first octave (A0 -> G#1/Ab1)
+	 Shifts the MIDI value to the first octave [A0;G#1/Ab1]
 	*/
 	inline constexpr Midi Normalise(Midi value)
 	{
@@ -52,5 +70,13 @@ namespace Note
 		default:
 			return true;
 		}
+	}
+
+	/*
+	 Converts a MIDI value to it's corresponding key color
+	*/
+	inline constexpr Utils::Color4ub MidiToColor(Midi value)
+	{
+		return keyColors[Normalise(value)];
 	}
 };
