@@ -30,6 +30,8 @@ add_executable(${PROJECT_NAME}
     src/Renderer.cpp
     src/KeyboardView.cpp
     src/KeyView.cpp
+    src/KeyController.cpp
+    src/KeyboardController.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE include)
