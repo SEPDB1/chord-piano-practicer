@@ -1,7 +1,5 @@
 #include <iostream>
 #include <SDL3/SDL.h>
-#include <SDL3_mixer/SDL_mixer.h>
-#include "Renderer.h"
 #include "game.h"
 
 int main()
