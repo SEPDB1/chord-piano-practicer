@@ -26,7 +26,7 @@ public:
 	friend class Game;
 	void Render() const;
 
-	void SetDrawColor(Utils::Color4ub c);
+	void SetDrawColor(Utils::Color4ub c) const;
 	void SetBackgroundColor(Utils::Color4ub c);
 	void DrawRect(const SDL_FRect* rect) const;
 	void FillRect(const SDL_FRect* rect) const;
@@ -36,8 +36,8 @@ public:
 	SDL_Renderer* GetRenderer() const;
 
 private:
-	static const uint32_t WIDTH{ 1280 };
-	static const uint32_t HEIGHT{ 720 };
+	constexpr static uint32_t m_Width{ 1280 };
+	constexpr static uint32_t m_Height{ 720 };
 
 	SDL_Window* m_pWindow{};
 	SDL_Renderer* m_pRenderer{};
