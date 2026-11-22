@@ -1,8 +1,5 @@
 #pragma once
 
-/*
- This file makes strings to compile time constants for easy comparison
-*/
 template <int Length> struct SdbmHash
 {
 	consteval static unsigned int _calculate(const char* const text, unsigned int& value)
@@ -29,6 +26,9 @@ struct SdbmHash<1>
 	}
 };
 
+/*
+ This function hashes strings to compile time constants
+*/
 template <size_t N> 
 consteval unsigned int MakeSdbmHash(const char(&text)[N]) 
 {
