@@ -2,6 +2,7 @@
 #include "Renderer.h"
 #include "KeyboardModel.h"
 #include "KeyboardView.h"
+#include "KeyboardController.h"
 #include <SDL3/SDL_rect.h>
 
 Game::Game()
@@ -47,7 +48,10 @@ void Game::HandleMouseButtonDown(SDL_MouseButtonEvent& e)
 
 void Game::HandleMouseMotion(SDL_MouseMotionEvent& e)
 {
-	
+	m_MousePosition.x = e.x;
+	m_MousePosition.y = e.y;
+
+	m_pController->OnMouseMotion(m_MousePosition);
 }
 
 void Game::Start()
@@ -56,6 +60,7 @@ void Game::Start()
 
 	const SDL_FPoint center{ Renderer::GetWidth() / 2.f, Renderer::GetHeight() / 2.f };
 	m_pView = std::make_unique<KeyboardView>(*m_pModel, center);
+	m_pController = std::make_unique<KeyboardController>(*m_pModel, *m_pView);
 }
 
 void Game::RenderGame() const

@@ -1,9 +1,11 @@
 #pragma once
 #include <memory>
 #include <SDL3/SDL_events.h>
+#include <SDL3/SDL_rect.h>
 
 class KeyboardModel;
 class KeyboardView;
+class KeyboardController;
 class Game final
 {
 public:
@@ -29,4 +31,6 @@ private:
 
 	std::unique_ptr<KeyboardModel> m_pModel{};
 	std::unique_ptr<KeyboardView> m_pView{};
+	std::unique_ptr<KeyboardController> m_pController{};
+	SDL_FPoint m_MousePosition{};
 };
