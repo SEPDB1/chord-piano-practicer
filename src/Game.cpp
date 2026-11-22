@@ -3,6 +3,7 @@
 #include "KeyboardModel.h"
 #include "KeyboardView.h"
 #include <SDL3/SDL_rect.h>
+
 Game::Game()
 {
 	Renderer::GetInstance().Init();
@@ -22,6 +23,31 @@ void Game::Render() const
 
 void Game::Update()
 {
+}
+
+void Game::HandleButtonUp(SDL_KeyboardEvent& e)
+{
+	
+}
+
+void Game::HandleButtonDown(SDL_KeyboardEvent& e)
+{
+	
+}
+
+void Game::HandleMouseButtonUp(SDL_MouseButtonEvent& e)
+{
+	
+}
+
+void Game::HandleMouseButtonDown(SDL_MouseButtonEvent& e)
+{
+	
+}
+
+void Game::HandleMouseMotion(SDL_MouseMotionEvent& e)
+{
+	
 }
 
 void Game::Start()

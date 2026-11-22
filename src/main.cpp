@@ -18,6 +18,21 @@ int main()
 		{
 			switch (e.type)
 			{
+			case SDL_EVENT_KEY_UP:
+				game.HandleButtonUp(e.key);
+				break;
+			case SDL_EVENT_KEY_DOWN:
+				game.HandleButtonDown(e.key);
+				break;
+			case SDL_EVENT_MOUSE_BUTTON_UP:
+				game.HandleMouseButtonUp(e.button);
+				break;
+			case SDL_EVENT_MOUSE_BUTTON_DOWN:
+				game.HandleMouseButtonDown(e.button);
+				break;
+			case SDL_EVENT_MOUSE_MOTION:
+				game.HandleMouseMotion(e.motion);
+				break;
 			case SDL_EVENT_QUIT:
 				isRunning = false;
 				break;
