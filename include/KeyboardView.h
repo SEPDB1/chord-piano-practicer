@@ -18,6 +18,9 @@ public:
 
 	void OnNotify(uint8_t eventId) override;
 
+	std::vector<KeyView>& GetKeyViews();
+	const std::vector<KeyView>& GetKeyViews() const;
+
 private:
 	std::vector<KeyView> m_Keys{};
 	KeyboardModel& m_Model;

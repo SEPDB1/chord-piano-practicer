@@ -23,7 +23,13 @@ void KeyView::Render() const
 	r.SetDrawColor(m_Black);
 	r.FillRect(std::addressof(m_BorderBounds));
 
-	r.SetDrawColor((m_IsWhite) ? m_White : m_Black);
+	Utils::Color4ub drawColor;
+	if (m_Model.IsSelected())
+		drawColor = m_Highlight;
+	else
+		drawColor = (m_IsWhite) ? m_White : m_Black;
+
+	r.SetDrawColor(drawColor);
 	r.FillRect(std::addressof(m_InsideBounds));
 }
 
@@ -35,4 +41,14 @@ void KeyView::OnNotify(uint8_t eventId)
 bool KeyView::IsWhite() const
 {
 	return m_IsWhite;
+}
+
+KeyModel& KeyView::GetModel() const
+{
+	return m_Model;
+}
+
+const std::array<std::unique_ptr<SDL_FRect>, 2>& KeyView::GetHitboxes() const
+{
+	return m_Hitboxes;
 }

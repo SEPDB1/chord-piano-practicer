@@ -35,6 +35,16 @@ void KeyboardView::OnNotify(uint8_t eventId)
 
 }
 
+std::vector<KeyView>& KeyboardView::GetKeyViews()
+{
+	return m_Keys;
+}
+
+const std::vector<KeyView>& KeyboardView::GetKeyViews() const
+{
+	return m_Keys;
+}
+
 void KeyboardView::CreateKeys()
 {
 	auto& keyModels{ m_Model.GetKeys() };

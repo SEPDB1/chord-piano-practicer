@@ -21,6 +21,8 @@ public:
 	void OnNotify(uint8_t eventId) override;
 
 	bool IsWhite() const;
+	KeyModel& GetModel() const;
+	const std::array<std::unique_ptr<SDL_FRect>, 2>& GetHitboxes() const;
 
 private:
 	KeyModel& m_Model;
@@ -31,6 +33,6 @@ private:
 
 	constexpr static Utils::Color4ub m_White{ 255, 255, 255 };
 	constexpr static Utils::Color4ub m_Black{ 0, 0, 0 };
+	constexpr static Utils::Color4ub m_Highlight{ 153, 204, 255 };
 	constexpr static float m_BorderSize{ 3.f };
-
 };
