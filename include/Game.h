@@ -33,5 +33,4 @@ private:
 	std::unique_ptr<KeyboardView> m_pView{};
 	std::unique_ptr<KeyboardController> m_pController{};
 	SDL_FPoint m_MousePosition{};
-	bool m_IsLMBDown{ false };
 };
