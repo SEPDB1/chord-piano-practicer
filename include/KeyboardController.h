@@ -9,7 +9,7 @@ class KeyboardController final
 public:
 	explicit KeyboardController(KeyboardModel& model, KeyboardView& view);
 
-	void OnMouseMotion(const SDL_FPoint& mouse);
+	void Update(const SDL_FPoint& mouse, bool isLMBDown);
 
 private:
 	std::vector<KeyController> m_Controllers{};

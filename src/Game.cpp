@@ -24,6 +24,7 @@ void Game::Render() const
 
 void Game::Update()
 {
+	m_pController->Update(m_MousePosition, m_IsLMBDown);
 }
 
 void Game::HandleButtonUp(SDL_KeyboardEvent& e)
@@ -38,20 +39,20 @@ void Game::HandleButtonDown(SDL_KeyboardEvent& e)
 
 void Game::HandleMouseButtonUp(SDL_MouseButtonEvent& e)
 {
-	
+	if (e.button == SDL_BUTTON_LEFT)
+		m_IsLMBDown = false;
 }
 
 void Game::HandleMouseButtonDown(SDL_MouseButtonEvent& e)
 {
-	
+	if (e.button == SDL_BUTTON_LEFT && !m_IsLMBDown)
+		m_IsLMBDown = true;
 }
 
 void Game::HandleMouseMotion(SDL_MouseMotionEvent& e)
 {
 	m_MousePosition.x = e.x;
 	m_MousePosition.y = e.y;
-
-	m_pController->OnMouseMotion(m_MousePosition);
 }
 
 void Game::Start()

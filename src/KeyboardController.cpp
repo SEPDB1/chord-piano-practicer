@@ -11,23 +11,21 @@ KeyboardController::KeyboardController(KeyboardModel& model, KeyboardView& view)
 		m_Controllers.emplace_back(key.GetModel(), key);
 }
 
-void KeyboardController::OnMouseMotion(const SDL_FPoint& mouse)
+void KeyboardController::Update(const SDL_FPoint& mouse, bool isLMBDown)
 {
 	for (auto& keyView : m_View.GetKeyViews())
 	{
 		auto& keyModel{ keyView.GetModel() };
-		bool isOverlapping{ false };
+		const bool isMouseOverlapping{ keyView.IsOverlapping(mouse) };
 
-		for (auto& pHitbox : keyView.GetHitboxes())
-		{
-			if (SDL_PointInRectFloat(std::addressof(mouse), pHitbox.get()))
-				isOverlapping = true;
-		}
-
-		const bool isSelected{ keyModel.IsSelected() };
-		if (isSelected && !isOverlapping)
-			keyModel.Deselect();
-		else if (!isSelected && isOverlapping)
+		if (isMouseOverlapping)
 			keyModel.Select();
+		else
+			keyModel.Deselect();
+
+		if (isLMBDown && isMouseOverlapping)
+			keyModel.Press();
+		else
+			keyModel.Release();
 	}
 }
