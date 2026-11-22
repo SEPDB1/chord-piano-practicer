@@ -1,7 +1,8 @@
 #pragma once
 #include <memory>
-#include "PianoKeyModel.h"
 
+class KeyboardModel;
+class KeyboardView;
 class Game final
 {
 public:
@@ -19,5 +20,6 @@ private:
 	void Start();
 	void RenderGame() const;
 
-	PianoKeyModel key{ Utils::NoteLetter::ASharp, 1 };
+	std::unique_ptr<KeyboardModel> m_pModel{};
+	std::unique_ptr<KeyboardView> m_pView{};
 };

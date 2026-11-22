@@ -28,7 +28,8 @@ add_executable(${PROJECT_NAME}
     src/main.cpp
     src/Game.cpp
     src/Renderer.cpp
-    
+    src/KeyboardView.cpp
+    src/KeyView.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE include)
