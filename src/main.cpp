@@ -1,15 +1,20 @@
 #include <iostream>
 #include <SDL3/SDL.h>
 #include "game.h"
+#include <fluidsynth.h>
 
 int main()
 {
+	// Prevent unrelevant initialisation warnings from popping up
+	fluid_set_log_function(FLUID_WARN, nullptr, nullptr);
+
 	if (!SDL_Init(SDL_INIT_VIDEO))
 		throw std::runtime_error(std::string("Failed to initialise SDL: ") + SDL_GetError());
 	
 	Game game{};
 	bool isRunning = true;
 	SDL_Event e;
+
 	while (isRunning)
 	{
 		while (SDL_PollEvent(&e))
