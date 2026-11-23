@@ -14,36 +14,24 @@ public:
 
 	void Press()
 	{
-		if (m_IsPressed)
-			return;
-
 		m_IsPressed = true;
 		Notify(MakeSdbmHash("OnPress"));
 	}
 
 	void Release()
 	{
-		if (!m_IsPressed)
-			return;
-
 		m_IsPressed = false;
 		Notify(MakeSdbmHash("OnRelease"));
 	}
 
 	void Select()
 	{
-		if (m_IsSelected)
-			return;
-
 		m_IsSelected = true;
 		Notify(MakeSdbmHash("OnSelect"));
 	}
 
 	void Deselect()
 	{
-		if (!m_IsSelected)
-			return;
-
 		m_IsSelected = false;
 		Notify(MakeSdbmHash("OnDeselect"));
 	}
