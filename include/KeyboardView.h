@@ -26,10 +26,11 @@ private:
 	KeyboardModel& m_Model;
 	SDL_FPoint m_Center{};
 
-	constexpr static float m_WidthWhiteKey{ 85.f };
-	constexpr static float m_HeightWhiteKey{ 330.f };
-	constexpr static float m_WidthBlackKey{ m_WidthWhiteKey / 2.f };
-	constexpr static float m_HeightBlackKey{ 2.f * m_HeightWhiteKey / 3.f };
+	inline constexpr static float m_WidthWhiteKey{ 85.f };
+	inline constexpr static float m_HeightWhiteKey{ 330.f };
+	inline constexpr static float m_WidthBlackKey{ m_WidthWhiteKey / 2.f };
+	inline constexpr static float m_HeightBlackKey{ 2.f * m_HeightWhiteKey / 3.f };
+	inline constexpr static float m_ScaleMargin{ -0.05f };
 
 	void CreateKeys();
 };

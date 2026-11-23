@@ -72,6 +72,9 @@ void KeyboardView::CreateKeys()
 				m_HeightWhiteKey
 			};
 
+			// scale hitbox down by tiny fraction so they don't overlap
+			bounds = Utils::ScaleByPixels(bounds, m_ScaleMargin);
+
 			hitboxes[0] = std::make_unique<SDL_FRect>(
 				bounds.x, 
 				bounds.y + 
@@ -83,7 +86,7 @@ void KeyboardView::CreateKeys()
 			const size_t nextKey{ (i < nrKeys - 1) ? i + 1 : -1  };
 			const bool prevIsBlack{ prevKey != -1 && !m_Keys[prevKey].IsWhite() };
 			const bool nextIsBlack{ nextKey != -1 && !Note::IsWhite(keyModels[nextKey].GetMidi()) };
-			SDL_FRect secondHitbox{ bounds.x, bounds.y, bounds.w, m_HeightBlackKey };
+			SDL_FRect secondHitbox{ bounds.x, bounds.y, bounds.w, m_HeightBlackKey + (m_ScaleMargin) }; // don't forget the fraction
 
 			if (prevIsBlack)
 			{
