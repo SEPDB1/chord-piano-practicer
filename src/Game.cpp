@@ -31,12 +31,22 @@ void Game::Update()
 
 void Game::HandleButtonUp(SDL_KeyboardEvent& e)
 {
-	
+	switch (e.scancode)
+	{
+	case SDL_SCANCODE_LSHIFT:
+		m_pController->OnPedalUp();
+		break;
+	}
 }
 
 void Game::HandleButtonDown(SDL_KeyboardEvent& e)
 {
-	
+	switch (e.scancode)
+	{
+	case SDL_SCANCODE_LSHIFT:
+		m_pController->OnPedalDown();
+		break;
+	}
 }
 
 void Game::HandleMouseButtonUp(SDL_MouseButtonEvent& e)
