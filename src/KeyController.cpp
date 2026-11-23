@@ -13,7 +13,6 @@ void KeyController::Press()
 		return;
 
 	m_Model.Press();
-	AudioManager::GetInstance().PlayNote(m_Model.GetMidi());
 }
 
 void KeyController::Release()
@@ -22,27 +21,48 @@ void KeyController::Release()
 		return;
 
 	m_Model.Release();
-	AudioManager::GetInstance().StopNote(m_Model.GetMidi());
 }
 
 void KeyController::Select()
 {
-	if (!m_Model.IsSelected())
-		m_Model.Select();
+	if (m_Model.IsSelected())
+		return;
+
+	m_Model.Select();
 }
 
 void KeyController::Deselect()
 {
-	if (m_Model.IsSelected())
-		m_Model.Deselect();
+	if (!m_Model.IsSelected())
+		return;
+
+	m_Model.Deselect();
 }
 
-KeyModel& KeyController::GetModel() const
+void KeyController::StartPlaying()
+{
+	if (m_Model.IsPlaying())
+		return;
+	
+	AudioManager::GetInstance().PlayNote(m_Model.GetMidi());
+	m_Model.StartPlaying();
+}
+
+void KeyController::StopPlaying()
+{
+	if (!m_Model.IsPlaying())
+		return;
+
+	AudioManager::GetInstance().StopNote(m_Model.GetMidi());
+	m_Model.StopPlaying();
+}
+
+const KeyModel& KeyController::GetModel() const
 {
 	return m_Model;
 }
 
-KeyView& KeyController::GetView() const
+const KeyView& KeyController::GetView() const
 {
 	return m_View;
 }

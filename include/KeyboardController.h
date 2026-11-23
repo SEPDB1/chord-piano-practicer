@@ -11,8 +11,12 @@ public:
 
 	void Update(const SDL_FPoint& mouse, bool isLMBDown);
 
+	void OnPedalUp();
+	void OnPedalDown();
+
 private:
 	std::vector<KeyController> m_Controllers{};
 	KeyboardModel& m_Model;
 	KeyboardView& m_View;
+	KeyController* m_LastSelectedKey{};
 };

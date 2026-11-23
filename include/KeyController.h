@@ -11,9 +11,11 @@ public:
 	void Release();
 	void Select();
 	void Deselect();
+	void StartPlaying();
+	void StopPlaying();
 
-	KeyModel& GetModel() const;
-	KeyView& GetView() const;
+	const KeyModel& GetModel() const;
+	const KeyView& GetView() const;
 
 private:
 	KeyModel& m_Model;
