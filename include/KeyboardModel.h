@@ -15,6 +15,16 @@ public:
 			m_Keys.emplace_back(startMidi + i);
 	}
 
+	void LowerPedal()
+	{
+		m_IsPedalDown = true;
+	}
+
+	void RaisePedal()
+	{
+		m_IsPedalDown = false;
+	}
+
 	const std::vector<KeyModel>& GetKeys() const
 	{
 		return m_Keys;
@@ -25,7 +35,13 @@ public:
 		return m_Keys;
 	}
 
+	bool IsPedalDown() const
+	{
+		return m_IsPedalDown;
+	}
+
 private:
 	std::vector<KeyModel> m_Keys{};
 	const uint8_t m_NrOctaves{ 1 };
+	bool m_IsPedalDown{ false };
 };

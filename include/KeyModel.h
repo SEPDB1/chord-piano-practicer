@@ -15,25 +15,31 @@ public:
 	void Press()
 	{
 		m_IsPressed = true;
-		Notify(MakeSdbmHash("OnPress"));
 	}
 
 	void Release()
 	{
 		m_IsPressed = false;
-		Notify(MakeSdbmHash("OnRelease"));
 	}
 
 	void Select()
 	{
 		m_IsSelected = true;
-		Notify(MakeSdbmHash("OnSelect"));
 	}
 
 	void Deselect()
 	{
 		m_IsSelected = false;
-		Notify(MakeSdbmHash("OnDeselect"));
+	}
+
+	void StartPlaying()
+	{
+		m_IsPlaying = true;
+	}
+
+	void StopPlaying()
+	{
+		m_IsPlaying = false;
 	}
 
 	Note::Midi GetMidi() const
@@ -51,8 +57,14 @@ public:
 		return m_IsSelected;
 	}
 
+	bool IsPlaying() const
+	{
+		return m_IsPlaying;
+	}
+
 private:
 	Note::Midi m_Midi{};
 	bool m_IsPressed{};
 	bool m_IsSelected{};
+	bool m_IsPlaying{};
 };
