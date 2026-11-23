@@ -13,19 +13,20 @@ KeyboardController::KeyboardController(KeyboardModel& model, KeyboardView& view)
 
 void KeyboardController::Update(const SDL_FPoint& mouse, bool isLMBDown)
 {
-	for (auto& keyView : m_View.GetKeyViews())
+	for (auto& keyController : m_Controllers)
 	{
-		auto& keyModel{ keyView.GetModel() };
+		auto& keyModel{ keyController.GetModel() };
+		auto& keyView{ keyController.GetView() };
 		const bool isMouseOverlapping{ keyView.IsOverlapping(mouse) };
 
 		if (isMouseOverlapping)
-			keyModel.Select();
+			keyController.Select();
 		else
-			keyModel.Deselect();
+			keyController.Deselect();
 
 		if (isLMBDown && isMouseOverlapping)
-			keyModel.Press();
+			keyController.Press();
 		else
-			keyModel.Release();
+			keyController.Release();
 	}
 }
